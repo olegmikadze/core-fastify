@@ -27,7 +27,7 @@ try {
 app.addHook('onListen', async function () {
 	const teamId = process.env.CLICKUP_TEAM_ID;
 	const ordersList = process.env.CLICKUP_ORDERS_ID;
-	const webhookEndpoint =  process.env.WEBHOOK_ENDPOINT;
+	const webhookEndpoint =  process.env.WEBHOOK_ENDPOINT + '/clickup/processWebhook';
 	console.log("🚀 ~ file: app.js:31 ~ webhookEndpoint:", JSON.stringify(webhookEndpoint));
 
 	const { webhooks } = await getWebhooksByTeam(teamId);
