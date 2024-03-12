@@ -244,7 +244,7 @@ async function updateRow ({ updatedCells, customTaskId })  {
 	console.log("🚀 ~ file: clickupPlugin.js:225 ~ updateRow ~ updatedCell:", JSON.stringify(updatedCells));
 	console.log("🚀 ~ file: clickupPlugin.js:226 ~ updateRow ~ customTaskId:", JSON.stringify(customTaskId));
 
-	const authClient = await google.auth.GoogleAuth({
+	const authClient = new google.auth.GoogleAuth({
 		// keyFile: path.join(__dirname, 'fiery-monitor-416203-88bfc5d8ef9d.json'),
 		scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
@@ -298,7 +298,7 @@ async function updateRow ({ updatedCells, customTaskId })  {
 async function appendRow(row) {
     console.log("🚀 ~ file: clickUp.js:153 ~ appendRow ~ values:", JSON.stringify(row));
     
-    const authClient = await google.auth.GoogleAuth({
+    const authClient = new google.auth.GoogleAuth({
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
