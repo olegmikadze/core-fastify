@@ -299,15 +299,11 @@ async function appendRow(row) {
     console.log("🚀 ~ file: clickUp.js:153 ~ appendRow ~ values:", JSON.stringify(row));
     
     const authClient = await google.auth.GoogleAuth({
-    //   keyFile: path.join(__dirname, 'fiery-monitor-416203-88bfc5d8ef9d.json'),
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
-    // const authClient = await auth.getClient();
-    console.log("🚀 ~ file: clickupPlugin.js:308 ~ appendRow ~ authClient:", JSON.stringify(authClient));
 
     const sheets = await google.sheets({ version:"v4", auth: authClient });
-    console.log("🚀 ~ file: clickupPlugin.js:311 ~ appendRow ~ sheets:", JSON.stringify(sheets));
 
     try {
 		console.log("🚀 ~ file: clickupPlugin.js:310 ~ appendRow ~ try:")
@@ -318,7 +314,6 @@ async function appendRow(row) {
             valueInputOption: "RAW",
             resource: { "values": [ row ] },
         });
-        console.log("🚀 ~ file: clickupPlugin.js:313 ~ appendRow ~ res:", JSON.stringify(res));
 
     } catch (err) {
         if (err) return console.log('The API returned an error: ' + err);
