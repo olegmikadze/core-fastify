@@ -99,10 +99,10 @@ export default async function (fastify) {
 
     fastify.post('/processWebhook', async (request) => {
         const { task_id, history_items, event } = request.body;
-        // console.log("🚀 ~ file: clickUp.js:37 ~ fastify.post ~ request.body:", JSON.stringify(request.body));
+        console.log("🚀 ~ file: clickUp.js:37 ~ fastify.post ~ request.body:", JSON.stringify(request.body));
 
 		const task = await getTaskbyId(task_id);
-		// console.log("🚀 ~ file: clickupPlugin.js:96 ~ fastify.post ~ newTask:", JSON.stringify(task));
+		console.log("🚀 ~ file: clickupPlugin.js:96 ~ fastify.post ~ newTask:", JSON.stringify(task));
 
 		const customTaskId = task.custom_id || task.id;
 
