@@ -42,6 +42,7 @@ app.addHook('onListen', async function () {
 		});
 	} else {
 		const myWebhook = webhooks.find(hook => hook.endpoint === webhookEndpoint);
+		console.log("🚀 ~ file: app.js:45 ~ myWebhook:", JSON.stringify(myWebhook));
 
 		if (!myWebhook) {
 			
@@ -60,9 +61,10 @@ app.addHook('onListen', async function () {
 		for await (let webhook of webhooks) {
 			myWebhook.id !== webhook.id && await deleteWebhook(webhook.id);
 		}
+
+		return myWebhook;
 	}
 
-	return { response: "Webhook already exists!" };
 });
 
 

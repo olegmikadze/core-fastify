@@ -308,7 +308,7 @@ async function appendRow(row) {
     try {
 		console.log("🚀 ~ file: clickupPlugin.js:310 ~ appendRow ~ try:")
 		
-        const res = await sheets.spreadsheets.values.append({
+		await sheets.spreadsheets.values.append({
             spreadsheetId: process.env.SPREADSHEETID,
             range: "'CLICKUP DATA'!A:A",
             valueInputOption: "RAW",
