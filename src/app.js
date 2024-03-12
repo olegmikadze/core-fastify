@@ -27,7 +27,8 @@ try {
 app.addHook('onListen', async function () {
 	const teamId = process.env.CLICKUP_TEAM_ID;
 	const ordersList = process.env.CLICKUP_ORDERS_ID;
-	const webhookEndpoint =  'https://core-fastify-gutc4psclq-uc.a.run.app/clickup/processWebhook';
+	const webhookEndpoint =  process.env.WEBHOOK_ENDPOINT;
+	console.log("🚀 ~ file: app.js:31 ~ webhookEndpoint:", JSON.stringify(webhookEndpoint));
 
 	const { webhooks } = await getWebhooksByTeam(teamId);
 
@@ -45,13 +46,13 @@ app.addHook('onListen', async function () {
 		if (!myWebhook) {
 			
 			for await (let webhook of webhooks) {
-			await deleteWebhook(webhook.id);
+				await deleteWebhook(webhook.id);
 			}
 
 			return await createWebhook({
-			team_id: teamId, 
-			list_id: ordersList, 
-			endpoint: webhookEndpoint
+				team_id: teamId, 
+				list_id: ordersList, 
+				endpoint: webhookEndpoint
 			});
 
 		}
