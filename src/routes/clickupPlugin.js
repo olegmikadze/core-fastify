@@ -1,10 +1,10 @@
 import fetch from 'node-fetch';
 import {google} from 'googleapis';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const CUSTOM_TASK_ID = 'Custom Task ID';
 const ORDER_NUMBER = 'ORDER #';
@@ -245,11 +245,8 @@ async function updateRow ({ updatedCells, customTaskId })  {
 	console.log("🚀 ~ file: clickupPlugin.js:226 ~ updateRow ~ customTaskId:", JSON.stringify(customTaskId));
 
 	const authClient = new google.auth.GoogleAuth({
-		// keyFile: path.join(__dirname, 'fiery-monitor-416203-88bfc5d8ef9d.json'),
 		scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
-	
-    // const authClient = await auth.getClient();
 	
     const sheets = await google.sheets({ version:"v4", auth: authClient });
 	
@@ -278,7 +275,6 @@ async function updateRow ({ updatedCells, customTaskId })  {
 
             if (columnName && rowNumber) {
 
-				console.log("🚀 ~ file: clickupPlugin.js:310 ~ appendRow ~ try:")
 
 				const res = await sheets.spreadsheets.values.update({
 					spreadsheetId: process.env.SPREADSHEETID,
@@ -290,6 +286,7 @@ async function updateRow ({ updatedCells, customTaskId })  {
 				console.log("🚀 ~ file: clickupPlugin.js:313 ~ appendRow ~ res:", JSON.stringify(res));
             }
         }
+		
     } catch (err) {
       if (err) return console.log('The API returned an error: ' + err);
     }
